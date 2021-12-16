@@ -12,7 +12,7 @@
 
 #include "ClapTrap.hpp"
 
-static std::string	embed(const std::string name)
+std::string	embed(const std::string name)
 {
 	return ("(" + name + ") ");
 }
