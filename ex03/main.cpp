@@ -14,7 +14,8 @@
 
 int	main(void)
 {
-	DiamondTrap	dT("01");
+	DiamondTrap	diamondTrap("Billy");
 
+	diamondTrap.whoAmI();
 	return (0);
 }

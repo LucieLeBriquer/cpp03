@@ -22,7 +22,7 @@ static void	initMsg(std::string name)
 }
 
 /* 
-**		CONSTRUCTOR AND DESTRUCTOR
+**		CONSTRUCTORS AND DESTRUCTOR
 */
 
 FragTrap::FragTrap(void) : ClapTrap("FR4G-TP")
