@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 18:47:54 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/12/16 21:57:05 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/12/16 22:50:38 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,13 @@ ScavTrap::~ScavTrap(void)
 
 ScavTrap	&ScavTrap::operator=(const ScavTrap &scavTrap)
 {
-	this->_name = scavTrap._name;
-	this->_hitPoints = scavTrap._hitPoints;
-	this->_energyPoints = scavTrap._energyPoints;
-	this->_attackDamage = scavTrap._attackDamage;
+	if (this != &scavTrap)
+	{
+		this->_name = scavTrap._name;
+		this->_hitPoints = scavTrap._hitPoints;
+		this->_energyPoints = scavTrap._energyPoints;
+		this->_attackDamage = scavTrap._attackDamage;
+	}
 	return (*this);
 }
 

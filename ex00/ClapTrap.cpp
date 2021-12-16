@@ -65,10 +65,13 @@ ClapTrap::~ClapTrap(void)
 
 ClapTrap	&ClapTrap::operator=(const ClapTrap &clapTrap)
 {
-	this->_name = clapTrap._name;
-	this->_hitPoints = clapTrap._hitPoints;
-	this->_energyPoints = clapTrap._energyPoints;
-	this->_attackDamage = clapTrap._attackDamage;
+	if (this != &clapTrap)
+	{
+		this->_name = clapTrap._name;
+		this->_hitPoints = clapTrap._hitPoints;
+		this->_energyPoints = clapTrap._energyPoints;
+		this->_attackDamage = clapTrap._attackDamage;
+	}
 	return (*this);
 }
 
