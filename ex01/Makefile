@@ -1,4 +1,4 @@
-CC			= clang++ -Wall -Wextra -Werror -std=c++98
+CC			= clang++ -Wall -Wextra -Werror
 RM			= rm -rf
 NAME		= ./scavTrap
 NAME_SHORT	= scavTrap

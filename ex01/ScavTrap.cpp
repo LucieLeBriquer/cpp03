@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 18:47:54 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/12/16 19:09:27 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/12/16 21:50:13 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	initMsg(std::string name)
 {
-	std::cout << embed(name) << "You want me? To join you? I am SO excited. We will be best friends." << std::endl;
+	std::cout << YELLOW << embed(name) << END << "*ST* You want me? To join you? I am SO excited." << std::endl;
 }
 
 ScavTrap::ScavTrap(void) : ClapTrap("SC4V-TP")
@@ -33,14 +33,14 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 	_attackDamage = 20;
 }
 
-ScavTrap::ScavTrap(const ScavTrap &scavTrap)
+ScavTrap::ScavTrap(const ScavTrap &scavTrap) : ClapTrap(scavTrap)
 {
-	*this = scavTrap;
+	return ;
 }
 
 ScavTrap::~ScavTrap(void)
 {
-	std::cout << embed(_name) << "I have many regrets!" << std::endl;
+	std::cout << RED << embed(_name) << END << "*ST* I have many regrets!" << std::endl;
 	return ;
 }
 
@@ -52,5 +52,5 @@ ScavTrap	&ScavTrap::operator=(const ScavTrap &scavTrap)
 
 void	ScavTrap::guardGate(void)
 {
-	std::cout << embed(_name) << "Gate keeper mode activated!" << std::endl;
+	std::cout << BLUE << embed(_name) << END << "Gate keeper mode activated!" << std::endl;
 }

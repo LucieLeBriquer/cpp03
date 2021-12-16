@@ -6,21 +6,36 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 17:29:44 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/12/16 18:22:48 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/12/16 21:36:00 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 
+/* 
+**		USEFUL FUNCTIONS 
+*/
+
 std::string	embed(const std::string name)
 {
-	return ("(" + name + ") ");
+	return ("[" + name + "] ");
 }
 
 static void	initMsg(std::string name)
 {
-	std::cout << embed(name) << "Let's get this party started!"<< std::endl;
+	std::cout << YELLOW << embed(name) << END << "*CT* Let's get this party started!" << std::endl;
 }
+
+static int	max(int a, int b)
+{
+	if (a >= b)
+		return (a);
+	return (b);
+}
+
+/* 
+**		CONSTRUCTOR AND DESTRUCTOR
+*/
 
 ClapTrap::ClapTrap(void) : _name("CL4P-TP"), _hitPoints(10), _energyPoints(10), _attackDamage(0)
 {
@@ -41,52 +56,41 @@ ClapTrap::ClapTrap(std::string name) : _hitPoints(10), _energyPoints(10), _attac
 
 ClapTrap::~ClapTrap(void)
 {
-	std::cout << embed(_name) << "I'm too pretty to die! No, nononono NO!" << std::endl;
+	std::cout << RED << embed(_name) << END << "*CT* I'm too pretty to die! No, nononono NO!" << std::endl;
 }
 
-std::string	ClapTrap::getName(void) const
-{
-	return (this->_name);
-}
-
-int	ClapTrap::getHitPoints(void) const
-{
-	return (this->_hitPoints);
-}
-
-int	ClapTrap::getEnergyPoints(void) const
-{
-	return (this->_energyPoints);
-}
-
-int	ClapTrap::getAttackDamage(void) const
-{
-	return (this->_attackDamage);
-}
+/* 
+**		OVERLOAD OPERATOR
+*/
 
 ClapTrap	&ClapTrap::operator=(const ClapTrap &clapTrap)
 {
-	this->_name = clapTrap.getName();
-	this->_hitPoints = clapTrap.getHitPoints();
-	this->_energyPoints = clapTrap.getEnergyPoints();
-	this->_attackDamage = clapTrap.getAttackDamage();
+	this->_name = clapTrap._name;
+	this->_hitPoints = clapTrap._hitPoints;
+	this->_energyPoints = clapTrap._energyPoints;
+	this->_attackDamage = clapTrap._attackDamage;
 	return (*this);
 }
 
+/* 
+**		MEMBER FUNCTIONS
+*/
+
 void	ClapTrap::attack(const std::string &target) const
 {
-	std::cout << embed(_name) << "\"Heyyah!\"";
-	std::cout << " - " << _name << " attack " << target << ", causing " << _attackDamage << " points of damage!" << std::endl;
+	std::cout << ORANGE << embed(_name) << END << "Heyyah! Let's attack " << target << "! (-" << _attackDamage << ")" << std::endl;
 }
 
-void	ClapTrap::takeDamage(unsigned int amount) const
+void	ClapTrap::takeDamage(unsigned int amount)
 {
-	std::cout << embed(_name) << "Why do I even feel pain?!" << std::endl;
-	std::cout << "\t" << _name << "is taking " << amount << " points of damage!" << std::endl;
+	std::cout << PURPLE << embed(_name) << END << "Why do I even feel pain?! (-" << amount << ")" << std::endl;
+	_energyPoints = max(_energyPoints - amount, 0);
+	if (_energyPoints == 0)
+		std::cout <<"Oh no little " << _name << " is dead..." << std::endl;
 }
 
-void	ClapTrap::beRepaired(unsigned int amount) const
+void	ClapTrap::beRepaired(unsigned int amount)
 {
-	std::cout << embed(_name) << "Sweet life juice!" << std::endl;
-	std::cout << "\t" << _name << " is being repaired by " << amount << " points!" << std::endl;
+	std::cout << GREEN << embed(_name) << END << "Sweet life juice! (+" << amount << ")"<< std::endl;
+	_energyPoints += amount;
 }

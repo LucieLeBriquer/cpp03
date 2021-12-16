@@ -86,7 +86,7 @@ void	ClapTrap::takeDamage(unsigned int amount)
 	std::cout << PURPLE << embed(_name) << END << "Why do I even feel pain?! (-" << amount << ")" << std::endl;
 	_energyPoints = max(_energyPoints - amount, 0);
 	if (_energyPoints == 0)
-		std::cout <<"Oh no... " << _name << " is dead..." << std::endl;
+		std::cout <<"Oh no little " << _name << " is dead..." << std::endl;
 }
 
 void	ClapTrap::beRepaired(unsigned int amount)
