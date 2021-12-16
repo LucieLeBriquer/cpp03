@@ -34,7 +34,7 @@ static int	max(int a, int b)
 }
 
 /* 
-**		CONSTRUCTOR AND DESTRUCTOR
+**		CONSTRUCTORS AND DESTRUCTOR
 */
 
 ClapTrap::ClapTrap(void) : _name("CL4P-TP"), _hitPoints(10), _energyPoints(10), _attackDamage(0)
@@ -60,7 +60,7 @@ ClapTrap::~ClapTrap(void)
 }
 
 /* 
-**		OVERLOAD OPERATOR
+**		OVERLOAD OPERATORS
 */
 
 ClapTrap	&ClapTrap::operator=(const ClapTrap &clapTrap)

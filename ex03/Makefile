@@ -1,7 +1,7 @@
 CC			= clang++ -Wall -Wextra -Werror
 RM			= rm -rf
-NAME		= ./fragTrap
-NAME_SHORT	= fragTrap
+NAME		= ./diamondTrap
+NAME_SHORT	= diamondTrap
 
 INCS_DIR	= .
 MAIN_INC	= -I$(INCS_DIR)
