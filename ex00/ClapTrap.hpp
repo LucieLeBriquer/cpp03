@@ -12,6 +12,13 @@
 
 #ifndef CLAPTRAP_HPP
 # define CLAPTRAP_HPP
+# define RED "\x1B[31m"
+# define GREEN "\x1B[32m"
+# define YELLOW "\x1B[33m"
+# define ORANGE "\x1B[34m"
+# define PURPLE "\x1B[35m"
+# define BLUE "\x1B[36m"
+# define END "\033[0m"
 # include <iostream>
 
 class ClapTrap
@@ -30,14 +37,11 @@ class ClapTrap
 
 		ClapTrap	&operator=(const ClapTrap &clapTrap);
 
-		std::string	getName(void) const;
-		int	getHitPoints(void) const;
-		int	getEnergyPoints(void) const;
-		int	getAttackDamage(void) const;
-
 		void	attack(std::string const &target) const;
-		void	takeDamage(unsigned int amount) const;
-		void	beRepaired(unsigned int amount) const;
+		void	takeDamage(unsigned int amount);
+		void	beRepaired(unsigned int amount);
 };
+
+std::string	embed(const std::string name);
 
 #endif

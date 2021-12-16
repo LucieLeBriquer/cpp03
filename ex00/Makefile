@@ -1,4 +1,4 @@
-CC			= clang++ -Wall -Wextra -Werror -std=c++98
+CC			= clang++ -Wall -Wextra -Werror
 RM			= rm -rf
 NAME		= ./clapTrap
 NAME_SHORT	= clapTrap
