@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 17:29:40 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/12/16 17:39:56 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/12/17 17:27:51 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ class ClapTrap
 
 		ClapTrap	&operator=(const ClapTrap &clapTrap);
 
-		void	attack(std::string const &target) const;
+		void	attack(const std::string &target) const;
 		void	takeDamage(unsigned int amount);
 		void	beRepaired(unsigned int amount);
 };

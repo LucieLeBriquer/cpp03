@@ -1,4 +1,4 @@
-CC			= clang++ -Wall -Wextra -Werror
+CC			= clang++ -Wall -Wextra -Werror -Wshadow
 RM			= rm -rf
 NAME		= ./diamondTrap
 NAME_SHORT	= diamondTrap

@@ -25,7 +25,7 @@ static void	initMsg(std::string name)
 **		CONSTRUCTORS AND DESTRUCTOR
 */
 
-FragTrap::FragTrap(void) : ClapTrap("FR4G-TP")
+FragTrap::FragTrap(void)
 {
 	initMsg(_name);
 	_hitPoints = 100;
