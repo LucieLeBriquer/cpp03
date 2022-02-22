@@ -18,7 +18,7 @@
 
 static void	initMsg(std::string name)
 {
-	std::cout << YELLOW << embed(name) << END << "*ST* You want me? To join you? I am SO excited." << std::endl;
+	std::cout << YELLOW << embed(name) << END << "You want me? To join you? I am SO excited." << std::endl;
 }
 
 /* 
@@ -43,12 +43,12 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 
 ScavTrap::ScavTrap(const ScavTrap &scavTrap) : ClapTrap(scavTrap)
 {
-	return ;
+	*this = scavTrap;
 }
 
 ScavTrap::~ScavTrap(void)
 {
-	std::cout << RED << embed(_name) << END << "*ST* I have many regrets!" << std::endl;
+	std::cout << RED << embed(_name) << END << "I have many regrets!" << std::endl;
 	return ;
 }
 
@@ -75,4 +75,17 @@ ScavTrap	&ScavTrap::operator=(const ScavTrap &scavTrap)
 void	ScavTrap::guardGate(void)
 {
 	std::cout << BLUE << embed(_name) << END << "Gate keeper mode activated!" << std::endl;
+}
+
+void	ScavTrap::attack(const std::string &target) 
+{
+	if (_energyPoints > 0 && _hitPoints > 0)
+	{
+		std::cout << ORANGE << embed(_name) << END << "Take that " << target << "! (-" << _attackDamage << "HP)" << std::endl;
+		_energyPoints -= 1;
+	}
+	else if (_energyPoints > 0)
+		printImpossibleAction(_name, "attack", ORANGE, "he's dead");
+	else
+		printImpossibleAction(_name, "attack", ORANGE, "he has no energy left");
 }

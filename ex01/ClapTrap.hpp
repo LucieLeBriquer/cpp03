@@ -37,11 +37,13 @@ class ClapTrap
 
 		ClapTrap	&operator=(const ClapTrap &clapTrap);
 
-		void	attack(const std::string &target) const;
+		void	attack(const std::string &target);
 		void	takeDamage(unsigned int amount);
 		void	beRepaired(unsigned int amount);
 };
 
 std::string	embed(const std::string name);
+void		printImpossibleAction(std::string name, std::string action,
+				std::string color, std::string reason);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 18:41:54 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/12/16 18:41:54 by lle-briq         ###   ########.fr       */
+/*   Updated: 2022/02/22 16:23:59 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ class ScavTrap : public ClapTrap
 		ScavTrap	&operator=(const ScavTrap &scavTrap);
 
 		void	guardGate(void);
+		void	attack(const std::string &target);
 };
 
 #endif
