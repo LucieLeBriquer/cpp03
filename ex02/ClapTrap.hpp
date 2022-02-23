@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 17:29:40 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/12/17 17:27:51 by lle-briq         ###   ########.fr       */
+/*   Updated: 2022/02/23 17:40:02 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@
 # define ORANGE "\x1B[34m"
 # define PURPLE "\x1B[35m"
 # define BLUE "\x1B[36m"
+# define GRAY "\x1B[90m"
 # define END "\033[0m"
 # include <iostream>
+# include <iomanip>
 
 class ClapTrap
 {
@@ -29,6 +31,11 @@ class ClapTrap
 		int			_energyPoints;
 		int			_attackDamage;
 		
+		void		_showStats(void) const;
+		void		_initMsg(std::string initStr) const;
+		std::string	_embedName(void) const;
+		void		_impossibleAction(std::string action, std::string color, std::string reason) const;
+
 	public:
 		ClapTrap(void);
 		ClapTrap(const ClapTrap &clapTrap);
@@ -37,11 +44,9 @@ class ClapTrap
 
 		ClapTrap	&operator=(const ClapTrap &clapTrap);
 
-		void	attack(const std::string &target) const;
+		void	attack(const std::string &target);
 		void	takeDamage(unsigned int amount);
 		void	beRepaired(unsigned int amount);
 };
-
-std::string	embed(const std::string name);
 
 #endif

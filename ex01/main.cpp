@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
-#include <iomanip>
 #define SIZE 52
 
 static void	printTitle(std::string title, bool toUpper = true)
@@ -46,6 +45,7 @@ static void	printTitle(std::string title, bool toUpper = true)
 	std::cout << toPrint.substr(n / 2, n - n / 2);
 	std::cout << std::setfill(c) << std::setw(size - size / 2 - n + n / 2) << "" << std::endl;
 	std::cout << std::setfill(c) << std::setw(size) << "" << std::endl;
+	std::cout << std::setfill(' ');
 }
 
 int	main(void)

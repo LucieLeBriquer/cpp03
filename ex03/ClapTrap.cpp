@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 17:29:44 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/12/20 19:03:35 by lle-briq         ###   ########.fr       */
+/*   Updated: 2022/02/23 17:56:45 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,6 @@
 /* 
 **		USEFUL FUNCTIONS 
 */
-
-std::string	embed(const std::string name)
-{
-	return ("[" + name + "] ");
-}
-
-static void	initMsg(std::string name)
-{
-	std::cout << YELLOW << embed(name) << END << "*CT* Let's get this party started!" << std::endl;
-}
 
 static int	max(int a, int b)
 {
@@ -39,24 +29,24 @@ static int	max(int a, int b)
 
 ClapTrap::ClapTrap(void) : _name("CL4P-TP"), _hitPoints(10), _energyPoints(10), _attackDamage(0)
 {
-	initMsg(_name);
+	_initMsg("Let's get this party started!");
 }
 
 ClapTrap::ClapTrap(const ClapTrap &clapTrap)
 {
-	initMsg(_name);
 	*this = clapTrap;
+	_initMsg("Let's get this party started!");
 }
 
 ClapTrap::ClapTrap(std::string name) : _hitPoints(10), _energyPoints(10), _attackDamage(0)
 {
-	initMsg(name);
 	this->_name = name;
+	_initMsg("Let's get this party started!");
 }
 
 ClapTrap::~ClapTrap(void)
 {
-	std::cout << RED << embed(_name) << END << "*CT* I'm too pretty to die! No, nononono NO!" << std::endl;
+	std::cout << RED << _embedName() << END << "I'm too pretty to die! No, nononono NO!" << std::endl;
 }
 
 /* 
@@ -79,21 +69,67 @@ ClapTrap	&ClapTrap::operator=(const ClapTrap &clapTrap)
 **		MEMBER FUNCTIONS
 */
 
-void	ClapTrap::attack(const std::string &target) const
+void	ClapTrap::attack(const std::string &target) 
 {
-	std::cout << ORANGE << embed(_name) << END << "Heyyah! Let's attack " << target << "! (-" << _attackDamage << ")" << std::endl;
+	if (_energyPoints > 0 && _hitPoints > 0)
+	{
+		std::cout << ORANGE << _embedName() << END << "Heyyah! Let's attack " << target << "! (-" << _attackDamage << "HP)" << std::endl;
+		_energyPoints -= 1;
+	}
+	else if (_energyPoints > 0)
+		_impossibleAction("attack", ORANGE, "he's dead");
+	else
+		_impossibleAction("attack", ORANGE, "he has no energy left");
+	_showStats();
 }
 
 void	ClapTrap::takeDamage(unsigned int amount)
 {
-	std::cout << PURPLE << embed(_name) << END << "Why do I even feel pain?! (-" << amount << ")" << std::endl;
-	_energyPoints = max(_energyPoints - amount, 0);
-	if (_energyPoints == 0)
-		std::cout <<"Oh no little " << _name << " is dead..." << std::endl;
+	if (_hitPoints > 0)
+	{
+		std::cout << PURPLE << _embedName() << END << "Why do I even feel pain?! (-" << amount << "HP)" << std::endl;
+		_hitPoints = max(_hitPoints - amount, 0);
+		if (_hitPoints == 0)
+			std::cout << "\tOh no " << _name << " is dead..." << std::endl;
+	}
+	else
+		_impossibleAction("take damage", PURPLE, "he's dead");
+	_showStats();
 }
 
 void	ClapTrap::beRepaired(unsigned int amount)
 {
-	std::cout << GREEN << embed(_name) << END << "Sweet life juice! (+" << amount << ")"<< std::endl;
-	_energyPoints += amount;
+	if (_energyPoints > 0 && _hitPoints > 0)
+	{
+		std::cout << GREEN << _embedName() << END << "Sweet life juice! (+" << amount << "HP)"<< std::endl;
+		_hitPoints += amount;
+		_energyPoints -= 1;
+	}
+	else if (_energyPoints > 0)
+		_impossibleAction("be repaired", GREEN, "he's dead");
+	else
+		_impossibleAction("be repaired", GREEN, "he has no energy left");
+	_showStats();
+}
+
+void	ClapTrap::_showStats(void) const
+{
+	std::cout << GRAY << std::setw(5) << _hitPoints << "HP";
+	std::cout << std::setw(5) << _energyPoints << "EP";
+	std::cout << std::setw(5) << _attackDamage << "AD" << END << std::endl;
+}
+
+std::string	ClapTrap::_embedName(void) const
+{
+	return ("[" + _name + "] ");
+}
+
+void	ClapTrap::_impossibleAction(std::string action, std::string color, std::string reason) const
+{
+	std::cout << _name << " can't " << color << action << END << " since " << reason << std::endl;
+}
+
+void	ClapTrap::_initMsg(std::string initStr) const
+{
+	std::cout << YELLOW << _embedName() << END << initStr << std::endl;
 }

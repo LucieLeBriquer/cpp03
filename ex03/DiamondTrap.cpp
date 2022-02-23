@@ -17,29 +17,31 @@
 */
 
 DiamondTrap::DiamondTrap(void) : 
-	ClapTrap(),
-	ScavTrap(),
-	FragTrap()
+	ClapTrap(), ScavTrap(), FragTrap()
 {
-	return ;
+	_initMsg("Hey there!");
 }
 
-DiamondTrap::DiamondTrap(const DiamondTrap &diamondTrap) : ClapTrap(diamondTrap)
+DiamondTrap::DiamondTrap(const DiamondTrap &diamondTrap) :
+	ClapTrap(diamondTrap), ScavTrap(diamondTrap), FragTrap(diamondTrap)
 {
 	*this = diamondTrap;
+	_initMsg("Hey there!");
 }
 
-DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name")
+DiamondTrap::DiamondTrap(std::string name) :
+	ClapTrap(name + "_clap_name")
 {
 	_name = name;
 	_hitPoints = FragTrap::_hitPoints;
 	_energyPoints = ScavTrap::_energyPoints;
 	_attackDamage = FragTrap::_attackDamage;
+	_initMsg("Hey there!");
 }
 
 DiamondTrap::~DiamondTrap(void)
 {
-	return ;
+	std::cout << RED << _embedName() << END << "Bye bye!" << std::endl;
 }
 
 /* 

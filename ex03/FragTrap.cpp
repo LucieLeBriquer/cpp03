@@ -13,42 +13,34 @@
 #include "FragTrap.hpp"
 
 /* 
-**		USEFUL FUNCTIONS 
-*/
-
-static void	initMsg(std::string name)
-{
-	std::cout << YELLOW << embed(name) << END << "*FT* Look out everybody! Things are about to get awesome!" << std::endl;
-}
-
-/* 
 **		CONSTRUCTORS AND DESTRUCTOR
 */
 
-FragTrap::FragTrap(void)
+FragTrap::FragTrap(void) : ClapTrap("FR4G-TP")
 {
-	initMsg(_name);
 	_hitPoints = 100;
 	_energyPoints = 100;
 	_attackDamage = 30;
+	_initMsg("Look out everybody! Things are about to get awesome!");
 }
 
 FragTrap::FragTrap(std::string name) : ClapTrap(name)
 {
-	initMsg(_name);
 	_hitPoints = 100;
 	_energyPoints = 100;
 	_attackDamage = 30;
+	_initMsg("Look out everybody! Things are about to get awesome!");
 }
 
 FragTrap::FragTrap(const FragTrap &fragTrap) : ClapTrap(fragTrap)
 {
-	return ;
+	*this = fragTrap;
+	_initMsg("Look out everybody! Things are about to get awesome!");
 }
 
 FragTrap::~FragTrap(void)
 {
-	std::cout << RED << embed(_name) << END << "*FT* Robot down!" << std::endl;
+	std::cout << RED << _embedName() << END << "Robot down!" << std::endl;
 }
 
 /* 
@@ -73,5 +65,5 @@ FragTrap	&FragTrap::operator=(const FragTrap &fragTrap)
 
 void	FragTrap::highFivesGuys(void) const
 {
-	std::cout << BLUE << embed(_name) << END << "High Fives Guys!" << std::endl;
+	std::cout << BLUE << _embedName() << END << "High Fives Guys!" << std::endl;
 }

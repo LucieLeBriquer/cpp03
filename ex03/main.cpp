@@ -22,6 +22,7 @@ int	main(void)
 	diamondTrap.highFivesGuys();
 	diamondTrap.takeDamage(20);
 	diamondTrap.beRepaired(10);
-	diamondTrap.takeDamage(2000);
+	diamondTrap.takeDamage(100);
+
 	return (0);
 }

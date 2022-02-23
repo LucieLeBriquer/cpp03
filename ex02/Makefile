@@ -1,4 +1,4 @@
-CC			= clang++ -Wall -Wextra -Werror
+CC			= c++ -Wall -Wextra -Werror -std=c++98
 RM			= rm -rf
 NAME		= ./fragTrap
 NAME_SHORT	= fragTrap

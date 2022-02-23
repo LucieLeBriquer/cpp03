@@ -13,43 +13,34 @@
 #include "ScavTrap.hpp"
 
 /* 
-**		USEFUL FUNCTIONS 
-*/
-
-static void	initMsg(std::string name)
-{
-	std::cout << YELLOW << embed(name) << END << "You want me? To join you? I am SO excited." << std::endl;
-}
-
-/* 
 **		CONSTRUCTORS AND DESTRUCTOR
 */
 
 ScavTrap::ScavTrap(void) : ClapTrap("SC4V-TP")
 {
-	initMsg(_name);
 	_hitPoints = 100;
 	_energyPoints = 50;
 	_attackDamage = 20;
+	_initMsg("You want me? To join you? I am SO excited.");
 }
 
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 {
-	initMsg(_name);
 	_hitPoints = 100;
 	_energyPoints = 50;
 	_attackDamage = 20;
+	_initMsg("You want me? To join you? I am SO excited.");
 }
 
 ScavTrap::ScavTrap(const ScavTrap &scavTrap) : ClapTrap(scavTrap)
 {
 	*this = scavTrap;
+	_initMsg("You want me? To join you? I am SO excited.");
 }
 
 ScavTrap::~ScavTrap(void)
 {
-	std::cout << RED << embed(_name) << END << "I have many regrets!" << std::endl;
-	return ;
+	std::cout << RED << _embedName() << END << "I have many regrets!" << std::endl;
 }
 
 /* 
@@ -72,20 +63,21 @@ ScavTrap	&ScavTrap::operator=(const ScavTrap &scavTrap)
 **		MEMBER FUNCTIONS
 */
 
-void	ScavTrap::guardGate(void)
+void	ScavTrap::guardGate(void) const
 {
-	std::cout << BLUE << embed(_name) << END << "Gate keeper mode activated!" << std::endl;
+	std::cout << BLUE << _embedName() << END << "Gate keeper mode activated!" << std::endl;
 }
 
 void	ScavTrap::attack(const std::string &target) 
 {
 	if (_energyPoints > 0 && _hitPoints > 0)
 	{
-		std::cout << ORANGE << embed(_name) << END << "Take that " << target << "! (-" << _attackDamage << "HP)" << std::endl;
+		std::cout << ORANGE << _embedName() << END << "Take that " << target << "! (-" << _attackDamage << "HP)" << std::endl;
 		_energyPoints -= 1;
 	}
 	else if (_energyPoints > 0)
-		printImpossibleAction(_name, "attack", ORANGE, "he's dead");
+		_impossibleAction("attack", ORANGE, "he's dead");
 	else
-		printImpossibleAction(_name, "attack", ORANGE, "he has no energy left");
+		_impossibleAction("attack", ORANGE, "he has no energy left");
+	_showStats();
 }
